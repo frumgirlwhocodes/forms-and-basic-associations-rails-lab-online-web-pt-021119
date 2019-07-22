@@ -19,9 +19,10 @@ class Song < ActiveRecord::Base
   def artist_name=(name)
     self.artist = Artist.find_or_create_by(name: name)
   end
-	def note_contents=(content)
-    content.each do |content|
-      self.notes << Note.find_or_create_by(content: content)
+	def note_contents=(contents)
+    contents.each do |content|
+      note=Note.find(content)
+        self.notes << note 
     end
   end
 
@@ -32,6 +33,7 @@ class Song < ActiveRecord::Base
     end
     array
   end
+end 
 
 	
 	
